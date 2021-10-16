@@ -16,11 +16,12 @@ public class SimpleGrade implements Grade {
 	public SimpleGrade() {
 		this.grade = 0.0;
 	}
-	
+
 	/**
 	 * Method used to set the grade value
 	 * 
-	 * @param grade	double value of grade
+	 * @param grade
+	 *            double value of grade
 	 */
 	public void setValue(double grade) {
 		if (grade < 0.0 || grade >= 100.0) {
