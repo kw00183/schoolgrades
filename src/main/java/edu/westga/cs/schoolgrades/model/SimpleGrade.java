@@ -12,19 +12,28 @@ public class SimpleGrade implements Grade {
 
 	/**
 	 * Creates a new simple grade that retrieves the grade value
-	 * 
-	 * @param grade
-	 *            double value of grade
 	 */
-	public SimpleGrade(double grade) {
+	public SimpleGrade() {
+		this.grade = 0.0;
+	}
+	
+	/**
+	 * Method used to set the grade value
+	 * 
+	 * @param grade	double value of grade
+	 */
+	public void setValue(double grade) {
+		if (grade < 0.0 || grade >= 100.0) {
+			throw new IllegalArgumentException(
+					"grade must be positive or less than or equal to 100.0");
+		}
 		this.grade = grade;
 	}
 
 	/**
 	 * Method implemented from Grade to return a double grade value
 	 * 
-	 * @return grade
-	 *            double value of grade
+	 * @return grade double value of grade
 	 */
 	@Override
 	public double getValue() {
