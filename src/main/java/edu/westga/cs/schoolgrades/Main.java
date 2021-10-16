@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Main class for the Babble project
+ * Main class for the SchoolGrades project
  * 
  * @author lewisb
  * @version cs6241
@@ -17,7 +17,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private static final String GUI_RESOURCE = "edu/westga/cs/schoolgrades/views/GradesGui.fxml";
-    @Override
+    
+	@Override
     public void start(Stage primaryStage) throws Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         URL resource = classLoader.getResource(Main.GUI_RESOURCE);
@@ -30,7 +31,7 @@ public class Main extends Application {
     }
 
     /**
-     * Start point for the appliction.
+     * Start point for the application.
      * 
      * @param args not used
      */
