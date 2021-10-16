@@ -1,5 +1,7 @@
 package edu.westga.cs.schoolgrades.model;
 
+import java.util.ArrayList;
+
 /**
  * Interface for all grade strategies
  * 
@@ -11,7 +13,8 @@ public interface GradeStrategy {
 	/**
 	 * Method used for to retrieve the grade subtotal value as a double
 	 * 
-	 * @return double as the grade subtotal value
+	 * @param grades	grades to use for subtotal
+	 * @return double	grade subtotal value
 	 */
-	double getSubtotal();
+	double getSubtotal(ArrayList<Grade> grades);
 }
