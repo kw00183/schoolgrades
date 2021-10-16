@@ -1,6 +1,6 @@
 package edu.westga.cs.schoolgrades.model;
 
-public class GradeDecorator implements Grade {
+public abstract class GradeDecorator implements Grade {
 
 	private Grade decoratedGrade;
 
