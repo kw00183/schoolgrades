@@ -8,5 +8,5 @@ package edu.westga.cs.schoolgrades.model;
  */
 interface Grade {
 
-	void getValue();
+	double getValue();
 }
