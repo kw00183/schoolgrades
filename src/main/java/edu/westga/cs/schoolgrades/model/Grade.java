@@ -6,7 +6,12 @@ package edu.westga.cs.schoolgrades.model;
  * @author Kim Weible
  * @version cs6241 Fall
  */
-interface Grade {
+public interface Grade {
 
+	/**
+	 * Method used for to retrieve the grade value as a double
+	 * 
+	 * @return double as the grade value
+	 */
 	double getValue();
 }
