@@ -26,6 +26,7 @@ public class CompositeGrade implements Grade {
 	 * @return grade
 	 *            double value of grade
 	 */
+	@Override
 	public double getValue() {
 		return this.grade;
 	}
