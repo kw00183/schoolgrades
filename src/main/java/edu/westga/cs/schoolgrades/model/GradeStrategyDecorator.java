@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public abstract class GradeStrategyDecorator implements GradeStrategy {
 
-	private GradeStrategy strategy;
+	private GradeStrategy decoratedStrategy;
 
 	/**
 	 * Constructor for the GradeStrategyDecorator that accepts the strategy
@@ -19,22 +19,20 @@ public abstract class GradeStrategyDecorator implements GradeStrategy {
 	 * @param strategy
 	 *            strategy needed to apply additional logic
 	 */
-	public GradeStrategyDecorator(GradeStrategy strategy) {
-		this.strategy = strategy;
-	}
-
-	/**
-	 * Method that accepts the strategy needed and applies the additional logic
-	 * 
-	 * @param strategy
-	 *            strategy needed to apply additional logic
-	 */
-	public void doAdditional(GradeStrategy strategy) {
-		this.strategy = strategy;
+	public GradeStrategyDecorator(GradeStrategy decoratedStrategy) {
+		this.decoratedStrategy = decoratedStrategy;
 	}
 
 	@Override
 	public double getSubtotal(ArrayList<Grade> grades) {
-		return this.strategy.getSubtotal(grades);
+		return this.decoratedStrategy.getSubtotal(grades);
+	}
+
+	public GradeStrategy getDecoratedStrategy() {
+		return this.decoratedStrategy;
+	}
+
+	public void setDecoratedStrategy(GradeStrategy decoratedStrategy) {
+		this.decoratedStrategy = decoratedStrategy;
 	}
 }
