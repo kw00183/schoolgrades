@@ -16,7 +16,7 @@ public abstract class GradeStrategyDecorator implements GradeStrategy {
 	 * Constructor for the GradeStrategyDecorator that accepts the strategy
 	 * needed to apply the additional logic
 	 * 
-	 * @param strategy
+	 * @param decoratedStrategy
 	 *            strategy needed to apply additional logic
 	 */
 	public GradeStrategyDecorator(GradeStrategy decoratedStrategy) {
