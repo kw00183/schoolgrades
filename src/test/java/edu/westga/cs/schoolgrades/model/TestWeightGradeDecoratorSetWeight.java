@@ -21,7 +21,7 @@ public class TestWeightGradeDecoratorSetWeight {
 	 * Test weighting grade with 0.2 weight
 	 */
 	@Test
-	public void getValueWeightGradeWeight2() {
+	public void setWeightGradeWeight2() {
 		double gradeToWeight = 99.0;
 
 		WeightedGrade decoratedGrade = new WeightedGrade();
@@ -38,7 +38,7 @@ public class TestWeightGradeDecoratorSetWeight {
 	 * Test weighting grade with 0.3 weight
 	 */
 	@Test
-	public void getValueWeightGradeWeight3() {
+	public void setWeightGradeWeight3() {
 		double gradeToWeight = 99.0;
 
 		WeightedGrade decoratedGrade = new WeightedGrade();
@@ -55,7 +55,7 @@ public class TestWeightGradeDecoratorSetWeight {
 	 * Test weighting grade with 0.5 weight
 	 */
 	@Test
-	public void getValueWeightGradeWeight5() {
+	public void setWeightGradeWeight5() {
 		double gradeToWeight = 99.0;
 
 		WeightedGrade decoratedGrade = new WeightedGrade();
