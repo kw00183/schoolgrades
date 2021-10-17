@@ -28,7 +28,7 @@ public class TestCompositeGradeGetArray {
 		this.composite.setArray(80.0);
 		assertEquals("[80.0]", this.composite.getArray().toString());
 	}
-	
+
 	/**
 	 * Test to check that setArray method adds with 2 valid grades
 	 */
@@ -38,7 +38,7 @@ public class TestCompositeGradeGetArray {
 		this.composite.setArray(0.0);
 		assertEquals("[80.0, 0.0]", this.composite.getArray().toString());
 	}
-	
+
 	/**
 	 * Test to check that setArray method adds with 3 valid grades
 	 */
@@ -48,5 +48,33 @@ public class TestCompositeGradeGetArray {
 		this.composite.setArray(50.0);
 		this.composite.setArray(0.0);
 		assertEquals("[80.0, 50.0, 0.0]", this.composite.getArray().toString());
+	}
+
+	/**
+	 * Test to check that setArray method throws error with negative grade
+	 */
+	@Test
+	public void setArrayWithNegativeThrowError() {
+		try {
+			this.composite.setArray(-80.0);
+		} catch (IllegalArgumentException iae) {
+			assertEquals(
+					"grade must be positive or less than or equal to 100.0",
+					iae.getMessage());
+		}
+	}
+
+	/**
+	 * Test to check that setArray method throws error with high grade
+	 */
+	@Test
+	public void setArrayWithHighThrowError() {
+		try {
+			this.composite.setArray(105.0);
+		} catch (IllegalArgumentException iae) {
+			assertEquals(
+					"grade must be positive or less than or equal to 100.0",
+					iae.getMessage());
+		}
 	}
 }
