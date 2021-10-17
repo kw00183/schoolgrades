@@ -18,30 +18,46 @@ public class WeightGradeDecorator extends GradeDecorator {
 	 * 
 	 * @param decoratedGrade
 	 *            grade needed to apply additional logic
-	 * @param gradeWeight
-	 *            weight needed to apply to grade
 	 */
-	public WeightGradeDecorator(Grade decoratedGrade, double gradeWeight) {
+	public WeightGradeDecorator(Grade decoratedGrade) {
 		super(decoratedGrade);
-		this.gradeWeight = gradeWeight;
+		this.gradeWeight = 1.0;
 	}
 
 	@Override
 	public double getValue() {
-		return this.weightGrade(this.gradeWeight);
+		return this.weightGrade();
+	}
+	
+	/**
+	 * Method used to set weight to apply to grade
+	 * 
+	 * @param gradeWeight
+	 *            weight to apply to grade
+	 */
+	public void setWeight(double gradeWeight) {
+		this.gradeWeight = gradeWeight;
+	}
+	
+	/**
+	 * Method used to get weight to apply to grade
+	 * 
+	 * @return gradeWeight
+	 *            weight to apply to grade
+	 */
+	public double getWeight() {
+		return this.gradeWeight;
 	}
 
 	/**
 	 * Method that accepts the weight needed and multiplies it to the grade
 	 * (which could be a subtotal)
 	 * 
-	 * @param gradeWeight
-	 *            weight needed to multply with the grade
 	 * @return newGrade weighted grade
 	 */
-	public double weightGrade(double gradeWeight) {
+	public double weightGrade() {
 		this.oldGrade = super.getDecoratedGrade();
-		this.newGrade = this.oldGrade.getValue() * gradeWeight;
+		this.newGrade = this.oldGrade.getValue() * this.gradeWeight;
 		return this.newGrade;
 	}
 }
