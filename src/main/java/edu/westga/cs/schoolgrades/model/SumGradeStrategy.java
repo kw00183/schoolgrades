@@ -13,9 +13,13 @@ public class SumGradeStrategy implements GradeStrategy {
 	@Override
 	public double getSubtotal(ArrayList<Double> grades) {
 		double sumGrades = 0.0;
-	    for (int index = 0; index < grades.size(); index++) {
-	    	sumGrades += grades.get(index);
-	    }
-	    return sumGrades;
+		if (grades == null) {
+			throw new NullPointerException("grades cannot be null");
+		} else {
+			for (int index = 0; index < grades.size(); index++) {
+				sumGrades += grades.get(index);
+			}
+		}
+		return sumGrades;
 	}
 }
