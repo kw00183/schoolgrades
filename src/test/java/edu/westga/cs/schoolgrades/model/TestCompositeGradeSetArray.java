@@ -19,34 +19,6 @@ public class TestCompositeGradeSetArray {
 	void setUp() throws Exception {
 		this.composite = new CompositeGrade();
 	}
-
-	/**
-	 * Test to check that setArray method with negative grade throws error
-	 */
-	@Test
-	public void setArrayWithInvalidNegativeGradeThrowsError() {
-		try {
-			this.composite.setArray(-90.0);
-		} catch (IllegalArgumentException iae) {
-			assertEquals(
-					"grade must be positive or less than or equal to 100.0",
-					iae.getMessage());
-		}
-	}
-	
-	/**
-	 * Test to check that setArray method with too high grade throws error
-	 */
-	@Test
-	public void setArrayWithInvalidHighGradeThrowsError() {
-		try {
-			this.composite.setArray(105.0);
-		} catch (IllegalArgumentException iae) {
-			assertEquals(
-					"grade must be positive or less than or equal to 100.0",
-					iae.getMessage());
-		}
-	}
 	
 	/**
 	 * Test to check that setArray method adds with valid grade

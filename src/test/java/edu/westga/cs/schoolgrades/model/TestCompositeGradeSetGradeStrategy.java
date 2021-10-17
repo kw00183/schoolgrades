@@ -21,30 +21,6 @@ public class TestCompositeGradeSetGradeStrategy {
 	}
 
 	/**
-	 * Test to check that setGradeStrategy method null throws error
-	 */
-	@Test
-	public void setGradeStrategyWithNullThrowsError() {
-		try {
-			this.composite.setGradeStrategy(null);
-		} catch (NullPointerException npe) {
-			assertEquals("strategy cannot be null", npe.getMessage());
-		}
-	}
-
-	/**
-	 * Test to check that setGradeStrategy method empty throws error
-	 */
-	@Test
-	public void setGradeStrategyWithEmptyThrowsError() {
-		try {
-			this.composite.setGradeStrategy("");
-		} catch (IllegalArgumentException iae) {
-			assertEquals("strategy cannot be empty", iae.getMessage());
-		}
-	}
-
-	/**
 	 * Test to check that setGradeStrategy method sets "sum"
 	 */
 	@Test

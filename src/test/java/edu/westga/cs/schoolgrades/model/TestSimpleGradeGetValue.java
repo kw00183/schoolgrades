@@ -36,34 +36,4 @@ public class TestSimpleGradeGetValue {
 		this.grade.setValue(99.0);
 		assertEquals(99.0, this.grade.getValue());
 	}
-
-	/**
-	 * Test to check that setting an invalid negative grade returns 0.0 grade
-	 * value
-	 */
-	@Test
-	public void setInvalidNegativeGradeShouldTriggerError() {
-		try {
-			this.grade.setValue(-99.0);
-		} catch (IllegalArgumentException iae) {
-			assertEquals(
-					"grade must be positive or less than or equal to 100.0",
-					iae.getMessage());
-		}
-	}
-
-	/**
-	 * Test to check that setting an invalid high grade (grade over 100.0)
-	 * returns 0.0 grade value
-	 */
-	@Test
-	public void setInvalidHighGradeShouldTriggerError() {
-		try {
-			this.grade.setValue(105.0);
-		} catch (IllegalArgumentException iae) {
-			assertEquals(
-					"grade must be positive or less than or equal to 100.0",
-					iae.getMessage());
-		}
-	}
 }

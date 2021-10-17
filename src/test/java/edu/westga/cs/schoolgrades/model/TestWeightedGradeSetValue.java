@@ -21,34 +21,6 @@ public class TestWeightedGradeSetValue {
 	}
 
 	/**
-	 * Test to check that setValue method with negative grade throws error
-	 */
-	@Test
-	public void setValueWithInvalidNegativeGradeThrowsError() {
-		try {
-			this.weighted.setValue(-90.0);
-		} catch (IllegalArgumentException iae) {
-			assertEquals(
-					"grade must be positive or less than or equal to 100.0",
-					iae.getMessage());
-		}
-	}
-
-	/**
-	 * Test to check that setValue method with high grade throws error
-	 */
-	@Test
-	public void setValueWithInvalidHighGradeThrowsError() {
-		try {
-			this.weighted.setValue(105.0);
-		} catch (IllegalArgumentException iae) {
-			assertEquals(
-					"grade must be positive or less than or equal to 100.0",
-					iae.getMessage());
-		}
-	}
-
-	/**
 	 * Test to check that setValue method adds with valid grade
 	 */
 	@Test

@@ -23,19 +23,6 @@ public class TestSumGradeStrategyGetSubtotal {
 	}
 
 	/**
-	 * Test to check that creating SumGradeStrategy with null parameter throws
-	 * error
-	 */
-	@Test
-	public void getSubtotalSumGradeStrategyWithNullParameterThrowsError() {
-		try {
-			this.strategy.getSubtotal(null);
-		} catch (NullPointerException npe) {
-			assertEquals("grades cannot be null", npe.getMessage());
-		}
-	}
-
-	/**
 	 * Test to check that creating SumGradeStrategy with empty array returns 0.0
 	 * sum
 	 */

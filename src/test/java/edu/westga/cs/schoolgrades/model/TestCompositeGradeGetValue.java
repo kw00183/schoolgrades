@@ -58,20 +58,4 @@ public class TestCompositeGradeGetValue {
 		this.composite.setGradeStrategy("drop|average");
 		assertEquals(90.0, this.composite.getValue());
 	}
-
-	/**
-	 * Test to check that getValue method throws error for invalid strategy
-	 */
-	@Test
-	public void getValueCompositeGradeInvalidStrategy() {
-		this.composite.setArray(100.0);
-		this.composite.setArray(80.0);
-		this.composite.setArray(75.0);
-
-		try {
-			this.composite.setGradeStrategy("drop|sum");
-		} catch (IllegalArgumentException iae) {
-			assertEquals("invalid strategy", iae.getMessage());
-		}
-	}
 }
