@@ -11,8 +11,11 @@ import java.util.ArrayList;
 public class SumGradeStrategy implements GradeStrategy {
 
 	@Override
-	public double getSubtotal(ArrayList<Grade> grades) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double getSubtotal(ArrayList<Double> grades) {
+		double sumGrades = 0.0;
+	    for (int index = 0; index < grades.size(); index++) {
+	    	sumGrades += grades.get(index);
+	    }
+	    return sumGrades;
 	}
 }
