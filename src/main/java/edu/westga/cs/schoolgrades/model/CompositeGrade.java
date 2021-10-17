@@ -35,7 +35,7 @@ public class CompositeGrade implements Grade {
 	}
 	
 	/**
-	 * Method used to gett the grades values required for composite grade
+	 * Method used to get the grades values required for composite grade
 	 * 
 	 * @return grades
 	 *            array list of double grade values
