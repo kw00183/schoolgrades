@@ -26,12 +26,22 @@ public class CompositeGrade implements Grade {
 	 * @param grade
 	 *            double value of grade
 	 */
-	public void createArray(double grade) {
+	public void setArray(double grade) {
 		if (grade < 0.0 || grade >= 100.0) {
 			throw new IllegalArgumentException(
 					"grade must be positive or less than or equal to 100.0");
 		}
 		this.grades.add(grade);
+	}
+	
+	/**
+	 * Method used to gett the grades values required for composite grade
+	 * 
+	 * @return grades
+	 *            array list of double grade values
+	 */
+	public ArrayList<Double> getArray() {
+		return this.grades;
 	}
 
 	/**
