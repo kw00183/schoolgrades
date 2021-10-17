@@ -9,22 +9,28 @@ package edu.westga.cs.schoolgrades.model;
 public class WeightedGrade implements Grade {
 
 	private double grade;
-	
+
 	/**
 	 * Creates a new composite grade object
+	 */
+	public WeightedGrade() {
+		this.grade = 0.0;
+	}
+
+	/**
+	 * Method used to set grade in need of weighting
 	 * 
 	 * @param grade
-	 *            double value of grade
+	 *            grade of double type
 	 */
-	public WeightedGrade(double grade) {
+	public void setValue(double grade) {
 		this.grade = grade;
 	}
 
 	/**
 	 * Method implemented from Grade to return a double grade value
 	 * 
-	 * @return grade
-	 *            double value of grade
+	 * @return grade grade of double type
 	 */
 	@Override
 	public double getValue() {
