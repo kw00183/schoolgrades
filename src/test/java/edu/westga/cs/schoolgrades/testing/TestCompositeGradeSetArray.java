@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs.schoolgrades.model.CompositeGrade;
 
 /**
- * JUnit test class for CompositeGrade model class createArray method
+ * JUnit test class for CompositeGrade model class setArray method
  * 
  * @author Kim Weible
  * @version cs6241 Fall
