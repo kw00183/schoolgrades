@@ -1,5 +1,7 @@
 package edu.westga.cs.schoolgrades.model;
 
+import java.util.ArrayList;
+
 /**
  * Class for the composite grade that implements Grade
  * 
@@ -8,26 +10,61 @@ package edu.westga.cs.schoolgrades.model;
  */
 public class CompositeGrade implements Grade {
 
-	private double grade;
-	
+	private ArrayList<Double> grades;
+	private String strategy;
+
 	/**
-	 * Creates a new composite grade object
+	 * Creates a new composite grade object and instantiates the ArrayList
+	 */
+	public CompositeGrade() {
+		this.grades = new ArrayList<Double>();
+	}
+
+	/**
+	 * Method used to set the grades values required for composite grade
 	 * 
 	 * @param grade
 	 *            double value of grade
 	 */
-	public CompositeGrade(double grade) {
-		this.grade = grade;
+	public void createArray(double grade) {
+		if (grade < 0.0 || grade >= 100.0) {
+			throw new IllegalArgumentException(
+					"grade must be positive or less than or equal to 100.0");
+		}
+		this.grades.add(grade);
 	}
 
 	/**
-	 * Method implemented from Grade to return a double grade value
+	 * Method used to set the strategy to create the composite grade
 	 * 
-	 * @return grade
-	 *            double value of grade
+	 * @param strategy
+	 *            the string value of the strategy to use to create the
+	 *            composite grade
+	 */
+	public void setGradeStrategy(String strategy) {
+		this.strategy = strategy;
+	}
+
+	/**
+	 * Method implemented from Grade to return a double grade value using the
+	 * set strategy
+	 * 
+	 * @return grade double value representing composite grade
 	 */
 	@Override
 	public double getValue() {
-		return this.grade;
+		GradeStrategy implementStrategy;
+
+		if (this.strategy.equals("Sum")) {
+			implementStrategy = new SumGradeStrategy();
+		} else if (this.strategy.equals("Average")) {
+			implementStrategy = new AverageGradeStrategy();
+		} else if (this.strategy.equals("Drop")) {
+			implementStrategy = new AverageGradeStrategy();
+			implementStrategy = new DropLowestGradeDecorator(implementStrategy);
+		} else {
+			throw new IllegalArgumentException("no strategy set");
+		}
+		return implementStrategy.getSubtotal(this.grades);
 	}
 }
