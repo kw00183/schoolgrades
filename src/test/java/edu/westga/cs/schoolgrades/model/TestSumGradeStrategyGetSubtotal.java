@@ -57,4 +57,18 @@ public class TestSumGradeStrategyGetSubtotal {
 
 		assertEquals(10.0, this.strategy.getSubtotal(testArray));
 	}
+
+	/**
+	 * Test to check that creating SumGradeStrategy with null grades throws
+	 * error
+	 */
+	@Test
+	public void getSubtotalSumGradeStrategyWithEmptyGrades() {
+		ArrayList<Double> testArray = null;
+		try {
+			this.strategy.getSubtotal(testArray);
+		} catch (NullPointerException npe) {
+			assertEquals("grades cannot be null", npe.getMessage());
+		}
+	}
 }
