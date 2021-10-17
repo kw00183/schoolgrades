@@ -9,7 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs.schoolgrades.model.SumGradeStrategy;
 
-class TestSumGradeStrategyGetSubtotal {
+/**
+ * JUnit test class for SumGradeStrategy model class getSubtotal method
+ * 
+ * @author Kim Weible
+ * @version cs6241 Fall
+ */
+public class TestSumGradeStrategyGetSubtotal {
 
 	private SumGradeStrategy strategy;
 
