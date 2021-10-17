@@ -46,4 +46,29 @@ public class TestCompositeGradeSetGradeStrategy {
 		this.composite.setGradeStrategy("drop|average");
 		assertEquals("drop|average", this.composite.getGradeStrategy());
 	}
+
+	/**
+	 * Test to check that setGradeStrategy method empty strategy throws error
+	 */
+	
+	@Test
+	public void setGradeStrategyWithEmpty() {
+		try {
+			this.composite.setGradeStrategy("");
+		} catch (IllegalArgumentException iae) {
+			assertEquals("strategy cannot be empty", iae.getMessage());
+		}
+	}
+	/**
+	 * Test to check that setGradeStrategy method null strategy throws error
+	 */
+	
+	@Test
+	public void setGradeStrategyWithNull() {
+		try {
+			this.composite.setGradeStrategy(null);
+		} catch (NullPointerException npe) {
+			assertEquals("strategy cannot be null", npe.getMessage());
+		}
+	}
 }
