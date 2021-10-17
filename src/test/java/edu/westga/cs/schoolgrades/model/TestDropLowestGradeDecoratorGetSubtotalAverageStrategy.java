@@ -103,4 +103,36 @@ public class TestDropLowestGradeDecoratorGetSubtotalAverageStrategy {
 
 		assertEquals(87.5, decorator.getSubtotal(testArray));
 	}
+	
+	/**
+	 * Test throws error when grades are null
+	 */
+	@Test
+	public void getSubtotalAverageGradeStrategyDropDecoratorWithNullGrades() {
+		ArrayList<Double> testArray = null;
+		try {
+			GradeStrategy decoratedStrategy = new AverageGradeStrategy();
+			DropLowestGradeDecorator decorator = new DropLowestGradeDecorator(
+					decoratedStrategy);
+			decorator.getSubtotal(testArray);
+		} catch (NullPointerException npe) {
+			assertEquals("grades cannot be null or empty", npe.getMessage());
+		}
+	}
+	
+	/**
+	 * Test throws error when grades are empty
+	 */
+	@Test
+	public void getSubtotalAverageGradeStrategyDropDecoratorWithEmptyGrades() {
+		ArrayList<Double> testArray = new ArrayList<Double>();
+		try {
+			GradeStrategy decoratedStrategy = new AverageGradeStrategy();
+			DropLowestGradeDecorator decorator = new DropLowestGradeDecorator(
+					decoratedStrategy);
+			decorator.getSubtotal(testArray);
+		} catch (NullPointerException npe) {
+			assertEquals("grades cannot be null or empty", npe.getMessage());
+		}
+	}
 }
