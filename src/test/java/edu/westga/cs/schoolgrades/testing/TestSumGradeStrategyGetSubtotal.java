@@ -29,7 +29,7 @@ public class TestSumGradeStrategyGetSubtotal {
 	 * error
 	 */
 	@Test
-	public void createSumGradeStrategyWithNullParameterThrowsError() {
+	public void getSubtotalSumGradeStrategyWithNullParameterThrowsError() {
 		try {
 			this.strategy.getSubtotal(null);
 		} catch (NullPointerException npe) {
@@ -42,7 +42,7 @@ public class TestSumGradeStrategyGetSubtotal {
 	 * sum
 	 */
 	@Test
-	public void createSumGradeStrategyWithEmptyArraySum0() {
+	public void getSubtotalSumGradeStrategyWithEmptyArraySum0() {
 		ArrayList<Double> testArray = new ArrayList<Double>();
 
 		assertEquals(0.0, this.strategy.getSubtotal(testArray));
@@ -53,7 +53,7 @@ public class TestSumGradeStrategyGetSubtotal {
 	 * equal to value sum
 	 */
 	@Test
-	public void createSumGradeStrategyWithOneGrade() {
+	public void getSubtotalSumGradeStrategyWithOneGrade() {
 		ArrayList<Double> testArray = new ArrayList<Double>();
 		testArray.add(10.0);
 
@@ -65,7 +65,7 @@ public class TestSumGradeStrategyGetSubtotal {
 	 * correct sum
 	 */
 	@Test
-	public void createSumGradeStrategyWithManyGrades() {
+	public void getSubtotalSumGradeStrategyWithManyGrades() {
 		ArrayList<Double> testArray = new ArrayList<Double>();
 		testArray.add(10.0);
 		testArray.add(0.0);
