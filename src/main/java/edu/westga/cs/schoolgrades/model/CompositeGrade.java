@@ -33,12 +33,11 @@ public class CompositeGrade implements Grade {
 		}
 		this.grades.add(grade);
 	}
-	
+
 	/**
 	 * Method used to get the grades values required for composite grade
 	 * 
-	 * @return grades
-	 *            array list of double grade values
+	 * @return grades array list of double grade values
 	 */
 	public ArrayList<Double> getArray() {
 		return this.grades;
@@ -52,7 +51,21 @@ public class CompositeGrade implements Grade {
 	 *            composite grade
 	 */
 	public void setGradeStrategy(String strategy) {
+		if (strategy.equals(null)) {
+			throw new NullPointerException("strategy cannot be null");
+		} else if (strategy.equals("")) {
+			throw new NullPointerException("strategy cannot be empty");
+		}
 		this.strategy = strategy;
+	}
+
+	/**
+	 * Method used to get the strategy value required for composite grade
+	 * 
+	 * @return strategy string of strategy to use
+	 */
+	public String getGradeStrategy() {
+		return this.strategy;
 	}
 
 	/**
