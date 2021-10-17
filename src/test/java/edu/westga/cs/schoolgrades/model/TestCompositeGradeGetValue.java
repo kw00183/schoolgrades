@@ -1,4 +1,4 @@
-package edu.westga.cs.schoolgrades.testing;
+package edu.westga.cs.schoolgrades.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
