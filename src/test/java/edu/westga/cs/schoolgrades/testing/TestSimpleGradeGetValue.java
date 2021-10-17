@@ -34,7 +34,7 @@ public class TestSimpleGradeGetValue {
 	 * Test to check that setting a valid grade returns set result
 	 */
 	@Test
-	public void setValidGradeshouldGetValueSet() {
+	public void setValidGradeShouldGetValueSet() {
 		this.grade.setValue(99.0);
 		assertEquals(99.0, this.grade.getValue());
 	}
@@ -44,7 +44,7 @@ public class TestSimpleGradeGetValue {
 	 * value
 	 */
 	@Test
-	public void setInvalidNegativeGradeshouldGetValue0() {
+	public void setInvalidNegativeGradeShouldTriggerError() {
 		try {
 			this.grade.setValue(-99.0);
 		} catch (IllegalArgumentException iae) {
@@ -59,7 +59,7 @@ public class TestSimpleGradeGetValue {
 	 * returns 0.0 grade value
 	 */
 	@Test
-	public void setInvalidHighGradeshouldGetValue0() {
+	public void setInvalidHighGradeShouldTriggerError() {
 		try {
 			this.grade.setValue(105.0);
 		} catch (IllegalArgumentException iae) {
