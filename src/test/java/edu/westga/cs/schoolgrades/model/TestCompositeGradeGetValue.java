@@ -58,4 +58,36 @@ public class TestCompositeGradeGetValue {
 		this.composite.setGradeStrategy("drop|average");
 		assertEquals(90.0, this.composite.getValue());
 	}
+
+	/**
+	 * Test to check that getValue method throws error when strategy is empty
+	 */
+	@Test
+	public void getValueCompositeGradeEmptyStrategyThrowError() {
+		try {
+			this.composite.setArray(100.0);
+			this.composite.setArray(80.0);
+			this.composite.setArray(75.0);
+
+			this.composite.setGradeStrategy("");
+		} catch (IllegalArgumentException iae) {
+			assertEquals("strategy cannot be empty", iae.getMessage());
+		}
+	}
+	
+	/**
+	 * Test to check that getValue method throws error when strategy is invalid
+	 */
+	@Test
+	public void getValueCompositeGradeInvalidStrategyThrowError() {
+		try {
+			this.composite.setArray(100.0);
+			this.composite.setArray(80.0);
+			this.composite.setArray(75.0);
+
+			this.composite.setGradeStrategy("cat");
+		} catch (IllegalArgumentException iae) {
+			assertEquals("invalid strategy", iae.getMessage());
+		}
+	}
 }
