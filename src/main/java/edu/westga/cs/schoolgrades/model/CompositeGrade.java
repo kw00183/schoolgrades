@@ -27,7 +27,7 @@ public class CompositeGrade implements Grade {
 	 *            double value of grade
 	 */
 	public void setArray(double grade) {
-		if (grade < 0.0 || grade >= 100.0) {
+		if (grade < 0.0 || grade > 100.0) {
 			throw new IllegalArgumentException(
 					"grade must be positive or less than or equal to 100.0");
 		}
