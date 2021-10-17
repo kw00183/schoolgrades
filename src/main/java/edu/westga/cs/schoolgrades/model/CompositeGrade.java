@@ -86,7 +86,7 @@ public class CompositeGrade implements Grade {
 			implementStrategy = new AverageGradeStrategy();
 			implementStrategy = new DropLowestGradeDecorator(implementStrategy);
 		} else {
-			throw new IllegalArgumentException("no strategy set");
+			throw new IllegalArgumentException("invalid strategy");
 		}
 		return implementStrategy.getSubtotal(this.grades);
 	}
