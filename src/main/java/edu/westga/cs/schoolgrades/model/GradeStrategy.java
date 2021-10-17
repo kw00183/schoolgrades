@@ -16,5 +16,5 @@ public interface GradeStrategy {
 	 * @param grades	grades to use for subtotal
 	 * @return double	grade subtotal value
 	 */
-	double getSubtotal(ArrayList<Grade> grades);
+	double getSubtotal(ArrayList<Double> grades);
 }
