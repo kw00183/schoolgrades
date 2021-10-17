@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class AverageGradeStrategy implements GradeStrategy {
 
 	@Override
-	public double getSubtotal(ArrayList<Grade> grades) {
+	public double getSubtotal(ArrayList<Double> grades) {
 		// TODO Auto-generated method stub
 		return 0;
 	}	
