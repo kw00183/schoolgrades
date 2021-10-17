@@ -1,9 +1,9 @@
 package edu.westga.cs.schoolgrades.model;
 
 /**
- * Dummy class used to inherit TileGroup methods
+ * Dummy class used to inherit GradeStrategyDecorator methods
  * @author Kim Weible
- * @version 2021.08.25
+ * @version cs6241 Fall
  */
 public class DummyGradeStrategyDecorator extends GradeStrategyDecorator {
 
