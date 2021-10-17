@@ -51,10 +51,10 @@ public class CompositeGrade implements Grade {
 	 *            composite grade
 	 */
 	public void setGradeStrategy(String strategy) {
-		if (strategy.equals(null)) {
+		if (strategy == null) {
 			throw new NullPointerException("strategy cannot be null");
-		} else if (strategy.equals("")) {
-			throw new NullPointerException("strategy cannot be empty");
+		} else if (strategy.isEmpty()) {
+			throw new IllegalArgumentException("strategy cannot be empty");
 		}
 		this.strategy = strategy;
 	}
@@ -78,11 +78,11 @@ public class CompositeGrade implements Grade {
 	public double getValue() {
 		GradeStrategy implementStrategy;
 
-		if (this.strategy.equals("Sum")) {
+		if (this.strategy.equals("sum")) {
 			implementStrategy = new SumGradeStrategy();
-		} else if (this.strategy.equals("Average")) {
+		} else if (this.strategy.equals("average")) {
 			implementStrategy = new AverageGradeStrategy();
-		} else if (this.strategy.equals("Drop")) {
+		} else if (this.strategy.equals("drop|average")) {
 			implementStrategy = new AverageGradeStrategy();
 			implementStrategy = new DropLowestGradeDecorator(implementStrategy);
 		} else {
