@@ -1,5 +1,7 @@
 package edu.westga.cs.schoolgrades.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 
 import org.junit.Assert;
@@ -12,7 +14,7 @@ import org.junit.jupiter.api.Test;
  * @author Kim Weible
  * @version cs6241 Fall
  */
-public class TestWeightGradeDecoratorGetDecoratedStrategy {
+public class TestGradeStrategyDecoratorGetDecoratedStrategy {
 
 	private DummyGradeStrategyDecorator dummyDecorator;
 
@@ -34,8 +36,11 @@ public class TestWeightGradeDecoratorGetDecoratedStrategy {
 		GradeStrategy decoratedStrategy = new SumGradeStrategy();
 		this.dummyDecorator = new DummyGradeStrategyDecorator(
 				decoratedStrategy);
+		
+		this.dummyDecorator.setDecoratedStrategy(decoratedStrategy);
 
 		Assert.assertNotNull(this.dummyDecorator.getDecoratedStrategy());
+		assertEquals(100.0, this.dummyDecorator.getSubtotal(testArray));
 	}
 	
 	/**
@@ -51,7 +56,10 @@ public class TestWeightGradeDecoratorGetDecoratedStrategy {
 		GradeStrategy decoratedStrategy = new SumGradeStrategy();
 		this.dummyDecorator = new DummyGradeStrategyDecorator(
 				decoratedStrategy);
+		
+		this.dummyDecorator.setDecoratedStrategy(decoratedStrategy);
 
 		Assert.assertNotNull(this.dummyDecorator.getDecoratedStrategy());
+		assertEquals(280.0, this.dummyDecorator.getSubtotal(testArray));
 	}
 }
