@@ -24,14 +24,25 @@ public abstract class GradeStrategyDecorator implements GradeStrategy {
 	}
 
 	@Override
-	public double getSubtotal(ArrayList<Grade> grades) {
+	public double getSubtotal(ArrayList<Double> grades) {
 		return this.decoratedStrategy.getSubtotal(grades);
 	}
 
+	/**
+	 * Method used to get the decorated strategy
+	 * 
+	 * @return GradeStrategy the strategy to use for decoration
+	 */
 	public GradeStrategy getDecoratedStrategy() {
 		return this.decoratedStrategy;
 	}
 
+	/**
+	 * Method used to set the decorated strategy
+	 * 
+	 * @param decoratedStrategy
+	 *            the strategy to use for decoration
+	 */
 	public void setDecoratedStrategy(GradeStrategy decoratedStrategy) {
 		this.decoratedStrategy = decoratedStrategy;
 	}
