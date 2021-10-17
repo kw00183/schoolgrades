@@ -7,10 +7,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.schoolgrades.model.DropLowestGradeDecorator;
-import edu.westga.cs.schoolgrades.model.GradeStrategy;
-import edu.westga.cs.schoolgrades.model.SumGradeStrategy;
-
 /**
  * JUnit test class for DropLowestGradeDecorator model class with
  * SumGradeStrategy

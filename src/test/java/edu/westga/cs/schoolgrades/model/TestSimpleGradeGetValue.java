@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.schoolgrades.model.SimpleGrade;
-
 /**
  * JUnit test class for Simple Grade model class getValue method
  * 

@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.schoolgrades.model.CompositeGrade;
-
 /**
  * JUnit test class for CompositeGrade model class getGradeStrategy method
  * 

@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import edu.westga.cs.schoolgrades.model.SumGradeStrategy;
-
 /**
  * JUnit test class for SumGradeStrategy model class getSubtotal method
  * 
