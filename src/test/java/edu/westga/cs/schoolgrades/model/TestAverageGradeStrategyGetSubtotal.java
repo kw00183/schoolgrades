@@ -21,9 +21,10 @@ public class TestAverageGradeStrategyGetSubtotal {
 	void setUp() throws Exception {
 		this.strategy = new AverageGradeStrategy();
 	}
-	
+
 	/**
-	 * Test to check that creating AverageGradeStrategy with 1 grade returns average equal to grade
+	 * Test to check that creating AverageGradeStrategy with 1 grade returns
+	 * average equal to grade
 	 */
 	@Test
 	public void getSubtotalAverageGradeStrategyWithOneGrade() {
@@ -32,9 +33,10 @@ public class TestAverageGradeStrategyGetSubtotal {
 
 		assertEquals(10.0, this.strategy.getSubtotal(testArray));
 	}
-	
+
 	/**
-	 * Test to check that creating AverageGradeStrategy with 2 grades returns correct average
+	 * Test to check that creating AverageGradeStrategy with 2 grades returns
+	 * correct average
 	 */
 	@Test
 	public void getSubtotalAverageGradeStrategyWithTwoGrades() {
@@ -44,9 +46,10 @@ public class TestAverageGradeStrategyGetSubtotal {
 
 		assertEquals(85.0, this.strategy.getSubtotal(testArray));
 	}
-	
+
 	/**
-	 * Test to check that creating AverageGradeStrategy with 3 grades (1 is 0.0) returns correct average
+	 * Test to check that creating AverageGradeStrategy with 3 grades (1 is 0.0)
+	 * returns correct average
 	 */
 	@Test
 	public void getSubtotalAverageGradeStrategyWithThreeGradesOne0() {
@@ -55,7 +58,36 @@ public class TestAverageGradeStrategyGetSubtotal {
 		testArray.add(70.0);
 		testArray.add(0.0);
 
-		Double roundAverageGrade = Math.round(this.strategy.getSubtotal(testArray) * 100.0) / 100.0;
+		Double roundAverageGrade = Math
+				.round(this.strategy.getSubtotal(testArray) * 100.0) / 100.0;
 		assertEquals(56.67, roundAverageGrade);
+	}
+
+	/**
+	 * Test to check that creating AverageGradeStrategy with null grades throws
+	 * error
+	 */
+	@Test
+	public void getSubtotalAverageGradeStrategyWithNullGradesThrowError() {
+		ArrayList<Double> testArray = null;
+		try {
+			this.strategy.getSubtotal(testArray);
+		} catch (NullPointerException npe) {
+			assertEquals("grades cannot be null or empty", npe.getMessage());
+		}
+	}
+	
+	/**
+	 * Test to check that creating AverageGradeStrategy with empty grades throws
+	 * error
+	 */
+	@Test
+	public void getSubtotalAverageGradeStrategyWithEmptyGradesThrowError() {
+		ArrayList<Double> testArray = new ArrayList<Double>();
+		try {
+			this.strategy.getSubtotal(testArray);
+		} catch (NullPointerException npe) {
+			assertEquals("grades cannot be null or empty", npe.getMessage());
+		}
 	}
 }
