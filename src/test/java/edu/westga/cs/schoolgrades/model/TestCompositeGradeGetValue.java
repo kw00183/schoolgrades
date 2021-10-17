@@ -70,6 +70,7 @@ public class TestCompositeGradeGetValue {
 			this.composite.setArray(75.0);
 
 			this.composite.setGradeStrategy("");
+			this.composite.getValue();
 		} catch (IllegalArgumentException iae) {
 			assertEquals("strategy cannot be empty", iae.getMessage());
 		}
@@ -86,6 +87,7 @@ public class TestCompositeGradeGetValue {
 			this.composite.setArray(75.0);
 
 			this.composite.setGradeStrategy("cat");
+			this.composite.getValue();
 		} catch (IllegalArgumentException iae) {
 			assertEquals("invalid strategy", iae.getMessage());
 		}
