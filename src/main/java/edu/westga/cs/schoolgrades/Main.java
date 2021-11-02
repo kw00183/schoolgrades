@@ -19,10 +19,10 @@ public class Main extends Application {
 	private static final String GUI_RESOURCE = "edu/westga/cs/schoolgrades/views/MainGui.fxml";
 	
 	@Override
-    public void start(Stage primaryStage) throws Exception {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        URL resource = classLoader.getResource(Main.GUI_RESOURCE);
-        FXMLLoader loader = new FXMLLoader(resource);
+	public void start(Stage primaryStage) throws Exception {
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		URL resource = classLoader.getResource(Main.GUI_RESOURCE);
+		FXMLLoader loader = new FXMLLoader(resource);
         
         primaryStage.setTitle("Grades Worksheet");
 		primaryStage.setResizable(true);
@@ -35,11 +35,11 @@ public class Main extends Application {
     }
 
 	/**
-     * Start point for the application
-     * 
-     * @param args not used
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
+	 * Start point for the application
+	* 
+	* @param args not used
+	*/
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
