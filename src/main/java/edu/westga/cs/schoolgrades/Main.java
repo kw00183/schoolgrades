@@ -25,7 +25,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(resource);
         
         primaryStage.setTitle("Grades Worksheet");
-		primaryStage.setResizable(false);
+		primaryStage.setResizable(true);
         
         Parent root = (Parent) loader.load();
         Scene scene = new Scene(root);
