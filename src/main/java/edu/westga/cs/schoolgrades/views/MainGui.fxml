@@ -20,9 +20,12 @@
 		<MenuBar layoutX="14.0" layoutY="14.0" prefHeight="25.0"
 			prefWidth="373.0">
 			<menus>
-				<Menu mnemonicParsing="false" text="Data">
+				<Menu mnemonicParsing="true" text="_Data">
 					<items>
-						<MenuItem mnemonicParsing="false" text="Close" />
+						<MenuItem fx:id="menuAddQuiz" mnemonicParsing="true" text="Add _quiz" />
+						<MenuItem fx:id="menuAddHomework" mnemonicParsing="true" text="Add _homework" />
+						<MenuItem fx:id="menuAddExam" mnemonicParsing="true" text="Add _exam" />
+						<MenuItem fx:id="menuClearGrades" mnemonicParsing="true" text="_Clear grades" />
 					</items>
 				</Menu>
 			</menus>
