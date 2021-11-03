@@ -11,31 +11,50 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/14.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs.schoolgrades.controllers.MainController">
-   <children>
-      <MenuBar layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="373.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Data">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <ListView layoutX="14.0" layoutY="67.0" prefHeight="134.0" prefWidth="102.0" />
-      <ListView layoutX="131.0" layoutY="67.0" prefHeight="134.0" prefWidth="120.0" />
-      <ListView layoutX="266.0" layoutY="67.0" prefHeight="134.0" prefWidth="120.0" />
-      <Label layoutX="14.0" layoutY="47.0" text="Quizzes" />
-      <Label layoutX="131.0" layoutY="47.0" text="Homeworks" />
-      <Label layoutX="266.0" layoutY="47.0" text="Exams" />
-      <TextField layoutX="14.0" layoutY="228.0" prefHeight="25.0" prefWidth="102.0" />
-      <TextField layoutX="131.0" layoutY="228.0" prefHeight="25.0" prefWidth="120.0" />
-      <TextField layoutX="267.0" layoutY="228.0" prefHeight="25.0" prefWidth="120.0" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="211.0" prefHeight="17.0" prefWidth="102.0" text="Quiz Subtotal" textAlignment="CENTER" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="131.0" layoutY="211.0" prefHeight="17.0" prefWidth="120.0" text="HW Subtotal" textAlignment="CENTER" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="267.0" layoutY="211.0" prefHeight="17.0" prefWidth="120.0" text="Exam Subtotal" textAlignment="CENTER" />
-      <Label layoutX="14.0" layoutY="269.0" text="Final Grade:" />
-      <Button layoutX="251.0" layoutY="265.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Recalculate" />
-      <TextField layoutX="80.0" layoutY="265.0" prefHeight="25.0" prefWidth="163.0" />
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
+	prefWidth="400.0" xmlns="http://javafx.com/javafx/14.0.2"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="edu.westga.cs.schoolgrades.controllers.MainController">
+	<children>
+		<MenuBar layoutX="14.0" layoutY="14.0" prefHeight="25.0"
+			prefWidth="373.0">
+			<menus>
+				<Menu mnemonicParsing="false" text="Data">
+					<items>
+						<MenuItem mnemonicParsing="false" text="Close" />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+		<ListView fx:id="listViewQuiz" layoutX="14.0" layoutY="67.0" prefHeight="134.0"
+			prefWidth="102.0" />
+		<ListView fx:id="listViewHomework" layoutX="131.0" layoutY="67.0" prefHeight="134.0"
+			prefWidth="120.0" />
+		<ListView fx:id="listViewExam" layoutX="266.0" layoutY="67.0" prefHeight="134.0"
+			prefWidth="120.0" />
+		<Label layoutX="14.0" layoutY="47.0" text="Quizzes" />
+		<Label layoutX="131.0" layoutY="47.0" text="Homeworks" />
+		<Label layoutX="266.0" layoutY="47.0" text="Exams" />
+		<TextField fx:id="textFieldQuiz" layoutX="14.0" layoutY="228.0" prefHeight="25.0"
+			prefWidth="102.0" />
+		<TextField fx:id="textFieldHomework" layoutX="131.0" layoutY="228.0" prefHeight="25.0"
+			prefWidth="120.0" />
+		<TextField fx:id="textFieldExam" layoutX="267.0" layoutY="228.0" prefHeight="25.0"
+			prefWidth="120.0" />
+		<Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0"
+			layoutY="211.0" prefHeight="17.0" prefWidth="102.0"
+			text="Quiz Subtotal" textAlignment="CENTER" />
+		<Label alignment="CENTER" contentDisplay="CENTER"
+			layoutX="131.0" layoutY="211.0" prefHeight="17.0" prefWidth="120.0"
+			text="HW Subtotal" textAlignment="CENTER" />
+		<Label alignment="CENTER" contentDisplay="CENTER"
+			layoutX="267.0" layoutY="211.0" prefHeight="17.0" prefWidth="120.0"
+			text="Exam Subtotal" textAlignment="CENTER" />
+		<Label layoutX="14.0" layoutY="269.0" text="Final Grade:" />
+		<Button fx:id="buttonRecalculate" layoutX="251.0" layoutY="265.0" mnemonicParsing="false"
+			prefHeight="25.0" prefWidth="120.0" text="Recalculate" />
+		<TextField fx:id="textFieldFinalGrade" layoutX="80.0" layoutY="265.0" prefHeight="25.0"
+			prefWidth="163.0" />
+	</children>
 </Pane>
