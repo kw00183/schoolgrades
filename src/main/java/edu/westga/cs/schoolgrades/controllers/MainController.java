@@ -208,35 +208,7 @@ public class MainController implements Initializable {
 
 					@Override
 					public ListCell<Grade> call(ListView<Grade> grades) {
-						TextFieldListCell<Grade> textCell = new TextFieldListCell<Grade>() {
-							
-							@Override
-							public void updateItem(Grade item, boolean empty) {
-								super.updateItem(item, empty);
-								if (item != null) {
-									setText(String.format("%.2f", item.getValue()));
-									setAccessibleText(String.format("%.2f", item.getValue()));
-								} else {
-									setText("");
-								}							
-							}
-						};
-						
-						textCell.setConverter(new StringConverter<Grade>() {
-				            
-							@Override
-				            public String toString(Grade newGrade) {
-				                return String.valueOf(newGrade.getValue());
-				            }
-				            
-				            @Override
-				            public SimpleGrade fromString(String string) {
-				            	SimpleGrade newGrade = (SimpleGrade) textCell.getItem();
-				                newGrade.setValue(Double.parseDouble(string));
-				                return newGrade;
-				            }
-				        });
-				        return textCell;
+						return MainController.this.buildList();
 					}
 				});
 	}
@@ -246,12 +218,14 @@ public class MainController implements Initializable {
 
 		this.listViewHomework.setItems(this.homeworkGrades);
 
+		this.listViewHomework.setEditable(true);
+
 		this.listViewHomework.setCellFactory(
 				new Callback<ListView<Grade>, ListCell<Grade>>() {
 
 					@Override
-					public ListCell<Grade> call(ListView<Grade> grades) {
-						return new GradeCell();
+					public ListCell<Grade> call(ListView<Grade> homeworks) {
+						return MainController.this.buildList();
 					}
 				});
 	}
@@ -261,14 +235,60 @@ public class MainController implements Initializable {
 
 		this.listViewExam.setItems(this.examGrades);
 
+		this.listViewExam.setEditable(true);
+
 		this.listViewExam.setCellFactory(
 				new Callback<ListView<Grade>, ListCell<Grade>>() {
 
 					@Override
-					public ListCell<Grade> call(ListView<Grade> quizzes) {
-						return new GradeCell();
+					public ListCell<Grade> call(ListView<Grade> exams) {
+						return MainController.this.buildList();
 					}
 				});
+	}
+
+	private ListCell<Grade> buildList() {
+		TextFieldListCell<Grade> textCell = new TextFieldListCell<Grade>() {
+
+			@Override
+			public void updateItem(Grade item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item != null && MainController.isNumeric(item)) {
+					setText(String.format("%.2f", item.getValue()));
+					setAccessibleText(String.format("%.2f", item.getValue()));
+				} else {
+					setText("");
+				}
+			}
+		};
+		
+		textCell.setConverter(new StringConverter<Grade>() {
+
+			@Override
+			public String toString(Grade newGrade) {
+				return String.valueOf(newGrade.getValue());
+			}
+
+			@Override
+			public SimpleGrade fromString(String string) {
+				SimpleGrade newGrade = (SimpleGrade) textCell.getItem();
+				newGrade.setValue(Double.parseDouble(string));
+				return newGrade;
+			}
+		});
+		return textCell;
+	}
+	
+	private static boolean isNumeric(Grade strNum) {
+	    if (strNum == null) {
+	        return false;
+	    }
+	    try {
+	    	String.format("%.2f", strNum.getValue());
+	    } catch (NumberFormatException nfe) {
+	        return false;
+	    }
+	    return true;
 	}
 
 	private void calculateQuiz() {
@@ -327,17 +347,5 @@ public class MainController implements Initializable {
 		this.textFieldFinalGrade.textProperty().bindBidirectional(
 				new SimpleDoubleProperty(this.subtotalFinalGrade.getValue()),
 				new NumberStringConverter());
-	}
-
-	static class GradeCell extends ListCell<Grade> {
-		public void updateItem(Grade item, boolean empty) {
-			super.updateItem(item, empty);
-			if (item != null) {
-				setText(String.format("%.2f", item.getValue()));
-				setAccessibleText(String.format("%.2f", item.getValue()));
-			} else {
-				setText("");
-			}
-		}
 	}
 }
