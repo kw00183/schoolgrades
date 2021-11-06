@@ -1,18 +1,19 @@
 package edu.westga.cs.schoolgrades.controllers;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -31,12 +32,29 @@ import edu.westga.cs.schoolgrades.model.SumOfGradesStrategy;
 import edu.westga.cs.schoolgrades.model.WeightedGrade;
 
 /**
- * Cotroller class for the SchoolGrades project
+ * Controller class for the SchoolGrades project
  * 
  * @author Kim Weible
  * @version cs6241
  */
 public class MainController implements Initializable {
+	@FXML
+	private Label labelQuizzes;
+	@FXML
+	private Label labelHomeworks;
+	@FXML
+	private Label labelExams;
+	@FXML
+	private Label labelFinalGrade;
+	@FXML
+	private Label labelSubtotalQuiz;
+	@FXML
+	private Label labelSubtotalHomework;
+	@FXML
+	private Label labelSubtotalExam;
+	@FXML
+	private Label labelSubtotalFinalGrade;
+
 	@FXML
 	private MenuItem menuAddQuiz;
 	@FXML
@@ -93,25 +111,34 @@ public class MainController implements Initializable {
 		this.weightQuiz = 0.2;
 		this.weightHomework = 0.3;
 		this.weightExam = 0.5;
+
+		this.subtotalQuiz = new SimpleGrade(88.5);
+		this.subtotalHomework = new SimpleGrade(9.85);
+		this.subtotalExam = new SimpleGrade(42.64);
+		this.subtotalFinalGrade = new SimpleGrade(75.03);
 	}
 
+	/**
+	 * Initialize the application
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.buttonRecalculate.setOnAction(e -> this.clickRecalculate());
+		this.buttonRecalculate.setOnAction(e -> this.clickButtonRecalculate());
 
-		this.menuOptions();
+		this.buildMainMenuOptions();
+		this.buildContextMenuOptions();
 
-		this.createListQuiz();
-		this.createListHomework();
-		this.createListExam();
+		this.createListViewQuiz();
+		this.createListViewHomework();
+		this.createListViewExam();
 
-		this.calculateQuiz();
-		this.calculateHomework();
-		this.calculateExam();
-		this.calculateFinalGrade();
+		this.buildTextFields();
 	}
 
-	private void menuOptions() {
+	/**
+	 * Method used to build the menu options
+	 */
+	private void buildMainMenuOptions() {
 		this.menuAddQuiz.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -145,11 +172,71 @@ public class MainController implements Initializable {
 		});
 	}
 
+	/**
+	 * Method used to build the context menu options of the list views
+	 */
+	private void buildContextMenuOptions() {
+		this.listViewQuiz.setOnMouseClicked(event -> {
+			if (event.getButton() == MouseButton.SECONDARY) {
+				ContextMenu quizContextMenu = new ContextMenu();
+				MenuItem addQuizMenuItem = new MenuItem("add quiz");
+
+				addQuizMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						MainController.this.addNewQuizGrade();
+					}
+				});
+				quizContextMenu.getItems().add(addQuizMenuItem);
+				this.listViewQuiz.setContextMenu(quizContextMenu);
+			}
+		});
+
+		this.listViewHomework.setOnMouseClicked(event -> {
+			if (event.getButton() == MouseButton.SECONDARY) {
+				ContextMenu homeworkContextMenu = new ContextMenu();
+				MenuItem addHomeworkMenuItem = new MenuItem("add homework");
+
+				addHomeworkMenuItem
+						.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent event) {
+								MainController.this.addNewHomeworkGrade();
+							}
+						});
+				homeworkContextMenu.getItems().add(addHomeworkMenuItem);
+				this.listViewHomework.setContextMenu(homeworkContextMenu);
+			}
+		});
+
+		this.listViewExam.setOnMouseClicked(event -> {
+			if (event.getButton() == MouseButton.SECONDARY) {
+				ContextMenu examContextMenu = new ContextMenu();
+				MenuItem addExamMenuItem = new MenuItem("add exam");
+
+				addExamMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						MainController.this.addNewExamGrade();
+					}
+				});
+				examContextMenu.getItems().add(addExamMenuItem);
+				this.listViewExam.setContextMenu(examContextMenu);
+			}
+		});
+	}
+
+	/**
+	 * Method used to add the default quiz grades
+	 */
 	private void addDefaultQuizGrades() {
 		this.quizGrades.add(new SimpleGrade(0));
 		this.quizGrades.add(new SimpleGrade(10));
 	}
 
+	/**
+	 * Method used to add the default homework grades
+	 */
 	private void addDefaultHomeworkGrades() {
 		this.homeworkGrades.add(new SimpleGrade(100));
 		this.homeworkGrades.add(new SimpleGrade(80));
@@ -158,6 +245,9 @@ public class MainController implements Initializable {
 		this.homeworkGrades.add(new SimpleGrade(20));
 	}
 
+	/**
+	 * Method used to add the default exam grades
+	 */
 	private void addDefaultExamGrades() {
 		this.examGrades.add(new SimpleGrade(99));
 		this.examGrades.add(new SimpleGrade(67));
@@ -165,18 +255,30 @@ public class MainController implements Initializable {
 		this.examGrades.add(new SimpleGrade(88));
 	}
 
+	/**
+	 * Method used to add a new quiz grade
+	 */
 	private void addNewQuizGrade() {
 		this.quizGrades.add(new SimpleGrade(0));
 	}
 
+	/**
+	 * Method used to add a new homework grade
+	 */
 	private void addNewHomeworkGrade() {
 		this.homeworkGrades.add(new SimpleGrade(0));
 	}
 
+	/**
+	 * Method used to add a new exam grade
+	 */
 	private void addNewExamGrade() {
 		this.examGrades.add(new SimpleGrade(0));
 	}
 
+	/**
+	 * Method used to clear all grades
+	 */
 	private void clearGrades() {
 		this.quizGrades.clear();
 		this.homeworkGrades.clear();
@@ -185,7 +287,10 @@ public class MainController implements Initializable {
 		this.calculateFinalGrade();
 	}
 
-	private void clickRecalculate() {
+	/**
+	 * Method used to calculate all subtotals when button Recalculate is clicked
+	 */
+	private void clickButtonRecalculate() {
 		this.buttonRecalculate
 				.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -196,7 +301,10 @@ public class MainController implements Initializable {
 				});
 	}
 
-	private void createListQuiz() {
+	/**
+	 * Method used to create list view of quizzes
+	 */
+	private void createListViewQuiz() {
 		this.addDefaultQuizGrades();
 
 		this.listViewQuiz.setItems(this.quizGrades);
@@ -208,12 +316,15 @@ public class MainController implements Initializable {
 
 					@Override
 					public ListCell<Grade> call(ListView<Grade> grades) {
-						return MainController.this.buildList();
+						return MainController.this.buildListView();
 					}
 				});
 	}
 
-	private void createListHomework() {
+	/**
+	 * Method used to create list view of Homeworks
+	 */
+	private void createListViewHomework() {
 		this.addDefaultHomeworkGrades();
 
 		this.listViewHomework.setItems(this.homeworkGrades);
@@ -225,12 +336,15 @@ public class MainController implements Initializable {
 
 					@Override
 					public ListCell<Grade> call(ListView<Grade> homeworks) {
-						return MainController.this.buildList();
+						return MainController.this.buildListView();
 					}
 				});
 	}
 
-	private void createListExam() {
+	/**
+	 * Method used to create list view of exams
+	 */
+	private void createListViewExam() {
 		this.addDefaultExamGrades();
 
 		this.listViewExam.setItems(this.examGrades);
@@ -242,12 +356,17 @@ public class MainController implements Initializable {
 
 					@Override
 					public ListCell<Grade> call(ListView<Grade> exams) {
-						return MainController.this.buildList();
+						return MainController.this.buildListView();
 					}
 				});
 	}
 
-	private ListCell<Grade> buildList() {
+	/**
+	 * Method used to create list views
+	 * 
+	 * @return ListCell the list cell values for the list view
+	 */
+	private ListCell<Grade> buildListView() {
 		TextFieldListCell<Grade> textCell = new TextFieldListCell<Grade>() {
 
 			@Override
@@ -261,7 +380,7 @@ public class MainController implements Initializable {
 				}
 			}
 		};
-		
+
 		textCell.setConverter(new StringConverter<Grade>() {
 
 			@Override
@@ -272,59 +391,102 @@ public class MainController implements Initializable {
 			@Override
 			public SimpleGrade fromString(String string) {
 				SimpleGrade newGrade = (SimpleGrade) textCell.getItem();
-				newGrade.setValue(Double.parseDouble(string));
+				try {
+					newGrade.setValue(Double.parseDouble(string));
+				} catch (NumberFormatException nfe) {
+					System.out.println("value is not a number");
+				} catch (IllegalArgumentException iae) {
+					System.out.println("value should not be < 0");
+				}
 				return newGrade;
 			}
 		});
 		return textCell;
 	}
-	
-	private static boolean isNumeric(Grade strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	    	String.format("%.2f", strNum.getValue());
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
-	}
 
-	private void calculateQuiz() {
-		GradeCalculationStrategy strategy = new SumOfGradesStrategy();
-		this.subtotalQuiz = new SimpleGrade(
-				strategy.calculate(this.quizGrades));
-
+	/**
+	 * Method used to populate text fields
+	 */
+	private void buildTextFields() {
 		this.textFieldQuiz.textProperty().bindBidirectional(
 				new SimpleDoubleProperty(this.subtotalQuiz.getValue()),
 				new NumberStringConverter());
-	}
-
-	private void calculateHomework() {
-		GradeCalculationStrategy strategy = new DropLowestStrategy(
-				new AverageOfGradesStrategy());
-		this.subtotalHomework = new SimpleGrade(
-				strategy.calculate(this.homeworkGrades));
-
 		this.textFieldHomework.textProperty().bindBidirectional(
 				new SimpleDoubleProperty(this.subtotalHomework.getValue()),
 				new NumberStringConverter());
-	}
-
-	private void calculateExam() {
-		GradeCalculationStrategy strategy = new AverageOfGradesStrategy();
-		this.subtotalExam = new SimpleGrade(
-				strategy.calculate(this.examGrades));
-
 		this.textFieldExam.textProperty().bindBidirectional(
 				new SimpleDoubleProperty(this.subtotalExam.getValue()),
 				new NumberStringConverter());
+		this.textFieldFinalGrade.textProperty().bindBidirectional(
+				new SimpleDoubleProperty(this.subtotalFinalGrade.getValue()),
+				new NumberStringConverter());
 	}
 
+	/**
+	 * Method used to check if grade is a numeric value
+	 * 
+	 * @param stringNumber
+	 *            the string to check if it is a numeric value
+	 * @return boolean is string numeric or not
+	 */
+	private static boolean isNumeric(Grade stringNumber) {
+		if (stringNumber == null) {
+			return false;
+		}
+		try {
+			String.format("%.2f", stringNumber.getValue());
+		} catch (NumberFormatException nfe) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Method used to calculate quiz subtotal
+	 */
+	private void calculateQuiz() {
+		GradeCalculationStrategy strategy = new SumOfGradesStrategy();
+		this.subtotalQuiz = this.calculateSubtotal(strategy, this.quizGrades);
+	}
+
+	/**
+	 * Method used to calculate homework subtotal
+	 */
+	private void calculateHomework() {
+		GradeCalculationStrategy strategy = new DropLowestStrategy(
+				new AverageOfGradesStrategy());
+		this.subtotalHomework = this.calculateSubtotal(strategy,
+				this.homeworkGrades);
+	}
+
+	/**
+	 * Method used to calculate exam subtotal
+	 */
+	private void calculateExam() {
+		GradeCalculationStrategy strategy = new AverageOfGradesStrategy();
+		this.subtotalExam = this.calculateSubtotal(strategy, this.examGrades);
+	}
+
+	/**
+	 * Method used to calculate subtotal
+	 * 
+	 * @param strategy
+	 *            the strategy used to decorate the grade
+	 * @param decorateGrade
+	 *            the grade to decorate
+	 * @return decorated grade the decorated grade
+	 */
+	private Grade calculateSubtotal(GradeCalculationStrategy strategy,
+			ObservableList<Grade> decorateGrade) {
+		return new SimpleGrade(strategy.calculate(decorateGrade));
+	}
+
+	/**
+	 * Method used to calculate final grade subtotal
+	 */
 	private void calculateFinalGrade() {
 		GradeCalculationStrategy strategy = new SumOfGradesStrategy();
-		List<Grade> finalGrades = new ArrayList<>();
+		ObservableList<Grade> finalGrades = FXCollections.observableArrayList();
 
 		this.calculateQuiz();
 		this.calculateHomework();
@@ -341,11 +503,8 @@ public class MainController implements Initializable {
 		finalGrades.add(decoratedHomework);
 		finalGrades.add(decoratedExam);
 
-		this.subtotalFinalGrade = new SimpleGrade(
-				strategy.calculate(finalGrades));
+		this.subtotalFinalGrade = this.calculateSubtotal(strategy, finalGrades);
 
-		this.textFieldFinalGrade.textProperty().bindBidirectional(
-				new SimpleDoubleProperty(this.subtotalFinalGrade.getValue()),
-				new NumberStringConverter());
+		this.buildTextFields();
 	}
 }
