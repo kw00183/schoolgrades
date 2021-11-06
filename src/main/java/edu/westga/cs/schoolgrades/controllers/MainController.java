@@ -408,6 +408,11 @@ public class MainController implements Initializable {
 	 * Method used to populate text fields
 	 */
 	private void buildTextFields() {
+		this.textFieldQuiz.setEditable(false);
+		this.textFieldHomework.setEditable(false);
+		this.textFieldExam.setEditable(false);
+		this.textFieldFinalGrade.setEditable(false);
+		
 		this.textFieldQuiz.textProperty().bindBidirectional(
 				new SimpleDoubleProperty(this.subtotalQuiz.getValue()),
 				new NumberStringConverter());
