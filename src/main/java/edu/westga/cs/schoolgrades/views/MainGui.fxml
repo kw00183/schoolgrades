@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.Pane?>
 
 
@@ -22,42 +23,82 @@
 			<menus>
 				<Menu mnemonicParsing="true" text="_Data">
 					<items>
-						<MenuItem fx:id="menuAddQuiz" mnemonicParsing="true" text="Add _quiz" />
-						<MenuItem fx:id="menuAddHomework" mnemonicParsing="true" text="Add _homework" />
-						<MenuItem fx:id="menuAddExam" mnemonicParsing="true" text="Add _exam" />
-						<MenuItem fx:id="menuClearGrades" mnemonicParsing="true" text="_Clear grades" />
+						<MenuItem fx:id="menuAddQuiz" mnemonicParsing="true"
+							text="Add _quiz" />
+						<MenuItem fx:id="menuAddHomework" mnemonicParsing="true"
+							text="Add _homework" />
+						<MenuItem fx:id="menuAddExam" mnemonicParsing="true"
+							text="Add _exam" />
+						<MenuItem fx:id="menuClearGrades" mnemonicParsing="true"
+							text="_Clear grades" />
 					</items>
 				</Menu>
 			</menus>
 		</MenuBar>
-		<ListView fx:id="listViewQuiz" layoutX="14.0" layoutY="67.0" prefHeight="134.0"
-			prefWidth="102.0" />
-		<ListView fx:id="listViewHomework" layoutX="131.0" layoutY="67.0" prefHeight="134.0"
-			prefWidth="120.0" />
-		<ListView fx:id="listViewExam" layoutX="266.0" layoutY="67.0" prefHeight="134.0"
-			prefWidth="120.0" />
-		<Label layoutX="14.0" layoutY="47.0" text="Quizzes" />
-		<Label layoutX="131.0" layoutY="47.0" text="Homeworks" />
-		<Label layoutX="266.0" layoutY="47.0" text="Exams" />
-		<TextField fx:id="textFieldQuiz" layoutX="14.0" layoutY="228.0" prefHeight="25.0"
-			prefWidth="102.0" />
-		<TextField fx:id="textFieldHomework" layoutX="131.0" layoutY="228.0" prefHeight="25.0"
-			prefWidth="120.0" />
-		<TextField fx:id="textFieldExam" layoutX="267.0" layoutY="228.0" prefHeight="25.0"
-			prefWidth="120.0" />
-		<Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0"
-			layoutY="211.0" prefHeight="17.0" prefWidth="102.0"
-			text="Quiz Subtotal" textAlignment="CENTER" />
-		<Label alignment="CENTER" contentDisplay="CENTER"
-			layoutX="131.0" layoutY="211.0" prefHeight="17.0" prefWidth="120.0"
-			text="HW Subtotal" textAlignment="CENTER" />
-		<Label alignment="CENTER" contentDisplay="CENTER"
-			layoutX="267.0" layoutY="211.0" prefHeight="17.0" prefWidth="120.0"
-			text="Exam Subtotal" textAlignment="CENTER" />
-		<Label layoutX="14.0" layoutY="269.0" text="Final Grade:" />
-		<Button fx:id="buttonRecalculate" layoutX="251.0" layoutY="265.0" mnemonicParsing="false"
-			prefHeight="25.0" prefWidth="120.0" text="Recalculate" />
-		<TextField fx:id="textFieldFinalGrade" layoutX="80.0" layoutY="265.0" prefHeight="25.0"
-			prefWidth="163.0" />
+		<ListView fx:id="listViewQuiz" layoutX="14.0" layoutY="67.0"
+			prefHeight="134.0" prefWidth="102.0">
+			<tooltip>
+				<Tooltip text="Column for Quiz grades" />
+			</tooltip>
+		</ListView>
+		<ListView fx:id="listViewHomework" layoutX="131.0"
+			layoutY="67.0" prefHeight="134.0" prefWidth="120.0">
+			<tooltip>
+				<Tooltip text="Column for Homework grades" />
+			</tooltip>
+		</ListView>
+		<ListView fx:id="listViewExam" layoutX="266.0" layoutY="67.0"
+			prefHeight="134.0" prefWidth="120.0">
+			<tooltip>
+				<Tooltip text="Column for Exam grades" />
+			</tooltip>
+		</ListView>
+		<Label fx:id="labelQuizzes" layoutX="14.0" layoutY="47.0"
+			text="Quizzes" />
+		<Label fx:id="labelHomeworks" layoutX="131.0" layoutY="47.0"
+			text="Homeworks" />
+		<Label fx:id="labelExams" layoutX="266.0" layoutY="47.0"
+			text="Exams" />
+		<TextField fx:id="textFieldQuiz" layoutX="14.0"
+			layoutY="228.0" prefHeight="25.0" prefWidth="102.0">
+			<tooltip>
+				<Tooltip text="Quiz subtotal" />
+			</tooltip>
+		</TextField>
+		<TextField fx:id="textFieldHomework" layoutX="131.0"
+			layoutY="228.0" prefHeight="25.0" prefWidth="120.0">
+			<tooltip>
+				<Tooltip text="Homework subtotal" />
+			</tooltip>
+		</TextField>
+		<TextField fx:id="textFieldExam" layoutX="267.0"
+			layoutY="228.0" prefHeight="25.0" prefWidth="120.0">
+			<tooltip>
+				<Tooltip text="Exam subtotal" />
+			</tooltip>
+		</TextField>
+		<Label fx:id="labelSubtotalQuiz" alignment="CENTER"
+			contentDisplay="CENTER" layoutX="14.0" layoutY="211.0"
+			prefHeight="17.0" prefWidth="102.0" text="Quiz Subtotal"
+			textAlignment="CENTER" />
+		<Label fx:id="labelSubtotalHomework" alignment="CENTER"
+			contentDisplay="CENTER" layoutX="131.0" layoutY="211.0"
+			prefHeight="17.0" prefWidth="120.0" text="HW Subtotal"
+			textAlignment="CENTER" />
+		<Label fx:id="labelSubtotalExam" alignment="CENTER"
+			contentDisplay="CENTER" layoutX="267.0" layoutY="211.0"
+			prefHeight="17.0" prefWidth="120.0" text="Exam Subtotal"
+			textAlignment="CENTER" />
+		<Label fx:id="labelSubtotalFinalGrade" layoutX="14.0"
+			layoutY="269.0" text="Final Grade:" />
+		<Button fx:id="buttonRecalculate" layoutX="251.0"
+			layoutY="265.0" mnemonicParsing="false" prefHeight="25.0"
+			prefWidth="120.0" text="Recalculate" />
+		<TextField fx:id="textFieldFinalGrade" layoutX="80.0"
+			layoutY="265.0" prefHeight="25.0" prefWidth="163.0">
+			<tooltip>
+				<Tooltip text="Final grade" />
+			</tooltip>
+		</TextField>
 	</children>
 </Pane>
