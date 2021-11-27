@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.*;
+
 /**
  * Tests for CompositeGrade class add method
  * 
@@ -25,10 +27,13 @@ public class TestCompositeGradeAdd {
 	 */
 	@BeforeEach
 	public void setup() {
-		this.composite = new CompositeGrade(new SumOfGradesStrategy());
-		this.grade0 = new SimpleGrade(10);
-		this.grade1 = new SimpleGrade(20);
-		this.grade2 = new SimpleGrade(30);
+		this.composite = new CompositeGrade(mock(GradeCalculationStrategy.class));
+		this.grade0 = mock(Grade.class);
+		when(this.grade0.getValue()).thenReturn(10.00);
+		this.grade1 = mock(Grade.class);
+		when(this.grade1.getValue()).thenReturn(20.00);
+		this.grade2 = mock(Grade.class);
+		when(this.grade2.getValue()).thenReturn(30.00);
 	}
 
 	/**
