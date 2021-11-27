@@ -3,10 +3,11 @@ package edu.westga.cs.schoolgrades.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Tests for DropLowestStrategy class calculate method
@@ -15,11 +16,8 @@ import org.junit.jupiter.api.Test;
  * @version cs6241
  */
 public class TestDropLowestStrategyCalculate {
-
-	private static final double DELTA = 0.001;
-
 	private DropLowestStrategy dropLowestStrategy;
-	private GradeCalculationStrategy childStrategy;
+	private GradeCalculationStrategy mockStrategy;
 
 	private Grade grade0;
 	private Grade grade1;
@@ -32,14 +30,17 @@ public class TestDropLowestStrategyCalculate {
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {
-		this.grade0 = new SimpleGrade(10);
-		this.grade1 = new SimpleGrade(20);
-		this.grade2 = new SimpleGrade(30);
+		this.grade0 = mock(Grade.class);
+		when(this.grade0.getValue()).thenReturn(10.00);
+		this.grade1 = mock(Grade.class);
+		when(this.grade1.getValue()).thenReturn(20.00);
+		this.grade2 = mock(Grade.class);
+		when(this.grade2.getValue()).thenReturn(30.00);
 
 		this.grades = new ArrayList<Grade>();
-
-		this.childStrategy = new SumOfGradesStrategy();
-		this.dropLowestStrategy = new DropLowestStrategy(this.childStrategy);
+		
+		this.mockStrategy = mock(GradeCalculationStrategy.class);
+		this.dropLowestStrategy = new DropLowestStrategy(mockStrategy);
 	}
 
 	/**
@@ -57,7 +58,11 @@ public class TestDropLowestStrategyCalculate {
 	 */
 	@Test
 	public void shouldNotDropLowestIfGradesListIsEmpty() {
-		assertEquals(0, this.dropLowestStrategy.calculate(this.grades), DELTA);
+		ArrayList<Grade> gradesNew = new ArrayList<Grade>();		
+		
+		this.dropLowestStrategy.calculate(this.grades);
+		
+		verify(this.mockStrategy, times(1)).calculate(gradesNew);
 	}
 
 	/**
@@ -66,8 +71,13 @@ public class TestDropLowestStrategyCalculate {
 	@Test
 	public void shouldNotDropLowestIfGradesListHasOneElement() {
 		this.grades.add(this.grade0);
-		assertEquals(this.grade0.getValue(),
-				this.dropLowestStrategy.calculate(this.grades), DELTA);
+
+		ArrayList<Grade> gradesNew = new ArrayList<Grade>();
+		gradesNew.add(this.grade0);
+		
+		this.dropLowestStrategy.calculate(this.grades);
+		
+		verify(this.mockStrategy, times(1)).calculate(gradesNew);
 	}
 
 	/**
@@ -78,7 +88,14 @@ public class TestDropLowestStrategyCalculate {
 		this.grades.add(this.grade0);
 		this.grades.add(this.grade1);
 		this.grades.add(this.grade2);
-		assertEquals(50, this.dropLowestStrategy.calculate(this.grades), DELTA);
+		
+		ArrayList<Grade> gradesNew = new ArrayList<Grade>();
+		gradesNew.add(this.grade1);
+		gradesNew.add(this.grade2);
+		
+		this.dropLowestStrategy.calculate(this.grades);
+		
+		verify(this.mockStrategy, times(1)).calculate(gradesNew);
 	}
 
 	/**
@@ -89,7 +106,14 @@ public class TestDropLowestStrategyCalculate {
 		this.grades.add(this.grade1);
 		this.grades.add(this.grade2);
 		this.grades.add(this.grade0);
-		assertEquals(50, this.dropLowestStrategy.calculate(this.grades), DELTA);
+
+		ArrayList<Grade> gradesNew = new ArrayList<Grade>();
+		gradesNew.add(this.grade1);
+		gradesNew.add(this.grade2);
+		
+		this.dropLowestStrategy.calculate(this.grades);
+		
+		verify(this.mockStrategy, times(1)).calculate(gradesNew);
 	}
 
 	/**
@@ -100,7 +124,14 @@ public class TestDropLowestStrategyCalculate {
 		this.grades.add(this.grade1);
 		this.grades.add(this.grade0);
 		this.grades.add(this.grade2);
-		assertEquals(50, this.dropLowestStrategy.calculate(this.grades), DELTA);
+
+		ArrayList<Grade> gradesNew = new ArrayList<Grade>();
+		gradesNew.add(this.grade1);
+		gradesNew.add(this.grade2);
+		
+		this.dropLowestStrategy.calculate(this.grades);
+		
+		verify(this.mockStrategy, times(1)).calculate(gradesNew);
 	}
 
 	/**
@@ -112,6 +143,14 @@ public class TestDropLowestStrategyCalculate {
 		this.grades.add(this.grade0);
 		this.grades.add(this.grade2);
 		this.grades.add(this.grade0);
-		assertEquals(60, this.dropLowestStrategy.calculate(this.grades), DELTA);
+
+		ArrayList<Grade> gradesNew = new ArrayList<Grade>();
+		gradesNew.add(this.grade1);
+		gradesNew.add(this.grade2);
+		gradesNew.add(this.grade0);
+		
+		this.dropLowestStrategy.calculate(this.grades);
+		
+		verify(this.mockStrategy, times(1)).calculate(gradesNew);
 	}
 }
