@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.*;
+
 /**
  * Tests for SumOfGradesStrategy class calculate method
  * 
@@ -30,9 +32,12 @@ public class TestSumOfGradesStrategyCalculate {
 	 */
 	@BeforeEach
 	public void setup() {
-		this.grade0 = new SimpleGrade(10);
-		this.grade1 = new SimpleGrade(20);
-		this.grade2 = new SimpleGrade(30);
+		this.grade0 = mock(Grade.class);
+		when(this.grade0.getValue()).thenReturn(10.00);
+		this.grade1 = mock(Grade.class);
+		when(this.grade1.getValue()).thenReturn(20.00);
+		this.grade2 = mock(Grade.class);
+		when(this.grade2.getValue()).thenReturn(30.00);
 
 		this.grades = new ArrayList<Grade>();
 
